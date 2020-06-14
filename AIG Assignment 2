@@ -36,8 +36,9 @@ function Contraints
  capacityLeft = Array{Float64}(undef, n)
  
  
-function Initialize(double capacity, double coefficients, double weights, int n)
-
+function Initialize(double capacity, double weights, int n)
+coefficients = Array{Float64}(undef, n)
+ 
 
 for i in weights
 	
@@ -91,7 +92,7 @@ end
 
 function totalValue(double capacityLeft, double coefficients, double coeff, double weights, int n, int k1, int k2)
 	
-	totalValue = (values')*coefficients
+	totalValue = (values)*coefficients
 	
 	totalValue2 = totalValue
 	//next line updates totalvalue
