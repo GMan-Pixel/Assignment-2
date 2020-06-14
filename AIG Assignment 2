@@ -128,6 +128,19 @@ function totalValue(double capacityLeft, double coefficients, double coeff, doub
 #Question2
 
 
+function Inputs
+
+print("Enter number of states:")
+n = readline()
+k = 0
+while(k<n) 
+ print(" Enter value: ")
+ values[j] = Int(readline())
+ j = j+1
+
+end
+
+
 
 function maximumValue(state, alpha, beta)
 if terminal(state) 
