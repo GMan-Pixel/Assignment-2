@@ -96,7 +96,7 @@ function totalValue(double capacityLeft, double coefficients, double coeff, doub
 	
 	totalValue2 = totalValue
 	//next line updates totalvalue
-	totalValue2 = (totalValue2 - (coefficients[k1]*weights[k1] + coefficients[k2]*weights[k2])) + (coeff[k1]*weights[k1] - coeff[k2]*weights[k2])
+	totalValue2 = (totalValue2 - (coefficients[k1]*weights[k1] + coefficients[k2]*weights[k2])) + (coeff[k1]*weights[k1] + coeff[k2]*weights[k2])
 	
 	if (totalValue2 > totalValue)
 		
