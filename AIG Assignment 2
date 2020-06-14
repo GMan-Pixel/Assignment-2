@@ -1,15 +1,43 @@
 #Assignment2
 
+#Question1
 
-print("Enter number of items ")
- print(" Enter weight number ")
+function Contraints
+ 
+ print("Enter number of items ")
+ n = Int(readline())
+ 
+ j = 0
+ weightS = Array{Float64}(undef, n)
+ while(j<n)	 
+ print(" Enter weight: ")
+ weights[j] = Int(readline())
+ j = j+1
+ end
+ weights = weightS'
+ 
  print(" Enter values")
  
+ j = 0
+ valueS = Array{Float64}(undef, n)
+ while(j<n) 
+ print(" Enter value: ")
+ values[j] = Int(readline())
+ j = j+1
+ end
+ values = valueS'
  
  
-function Initialize(double capacity, double coefficients, double weights, int n){
-capacityLeft = coefficients
-i=0
+ end
+ 
+ 
+ 
+ 
+ capacityLeft = Array{Float64}(undef, n)
+ 
+ 
+function Initialize(double capacity, double coefficients, double weights, int n)
+
 
 for i in weights
 	
@@ -17,57 +45,153 @@ coefficients[i] = randInt(0, capacityLeft/weights[i])
 capacityLeft = capacityLeft - weights[i]*coefficients[i]
 
 end
-}
 
-totalValue = (values')*coefficients
-
+UpdateCoefficients(capacityLeft, coefficients, n)
 
 
-function UpdateCoefficients(double capacityLeft, double coefficients, int n){
-	
+
+end
+
+
+
+
+function UpdateCoefficients(double capacityLeft, double coefficients, int n)
 	
 	
 	double coeff2[] = coefficients
-	int k1 = randInt(0, n-1)
+	int k1 = rand(big.(0:n-1))
 	
 	capacityLeft = capacityLeft + coefficients[k1]*weights[k1]
 	
-	int k2 = randInt(0, n-1)
+	int k2 = rand(big.(0:n-1))
 	
-	if(k1 = k2){
+	
+	if(k1 = k2)
 		
 		k2 = mod(n-1, k1+1)
-	}
+	end
 	
 	
-	coeff2[k1] = randInt(coeff2[k1]+1, floor(capacityLeft/weights[k1]))
+	coeff2[k1] = rand(big.(coeff2[k1]+1:floor(capacityLeft/weights[k1])))	
 	capacityLeft = capacityLeft - coeff2[k1]*weights[k1]
 	
-	coeff2[k2] = randInt(0, floor(capacityLeft/weights[k2]))
+	print("Capacit left:")
+	print(capacityLeft)
+	
+	coeff2[k2] = rand(big.(0:floor(capacityLeft/weights[k2])))
 	capacityLeft = capacityLeft - coeff2[k2]*weights[k2]
 	
+	print("Capacit left:")
+	print(capacityLeft)
+	
+	totalValue(capacityLeft, coefficients, coeff, weights, n, k1, k2)
 		
-}
+end
 
 
-function totalValue(double capacityLeft, double coefficients, double coeff, double weights int n){
+function totalValue(double capacityLeft, double coefficients, double coeff, double weights, int n, int k1, int k2)
+	
+	totalValue = (values')*coefficients
 	
 	totalValue2 = totalValue
 	//next line updates totalvalue
 	totalValue2 = (totalValue2 - (coefficients[k1]*weights[k1] + coefficients[k2]*weights[k2])) + (coeff[k1]*weights[k1] - coeff[k2]*weights[k2])
 	
-	if (totalValue2 > totalValue){
+	if (totalValue2 > totalValue)
 		
 		coefficients[k1] = coeff2[k1]
 		coefficients[k2] = coeff2[k2]
 		
 		capacityLeft = totalCapacity - (weights')*coefficients
 		
-	}
+		print(coefficients[k1])
+		print(coefficients[k2])
+		
+		
+		for i in coefficients
+		print(coefficients[i])
+		end
+		print("Coefficients succesfully updated")
+	end
 	
 	else
 	
-    UpdateCoefficients(double capacityLeft, double coefficients, int n)
+    UpdateCoefficients(capacityLeft, coefficients, n)
 	
-}
+	end
+
+
+
+
+
+#Question2
+
+
+
+function maximumValue(state, alpha, beta)
+if terminal(state) 
+return Utility(state)
+end
+
+value = -10000000
+for S in next_states(states)
+value1 = mininumValue(c, alpha, beta)
+
+if value1 > value
+value = value1
+end
+
+if value1 >= beta
+return value
+end
+
+if value1 > alpha
+alpha = value1
+return value
+end
+
+
+function mininumValue(state, alpha, beta)
+
+if terminal(state) 
+return Utility(state)
+end
+
+value = 10000000
+for S in next_states(states)
+value1 = maximumValue(S, alpha, beta)
+
+if value1 < value
+value = value1
+end
+
+if value1 <= alpha
+return value
+end
+
+if value1 < beta
+beta = value1
+end
+return value
+end
+
+
+
+
+function Turns(state, alpha, beta)
+
+if (mod(2, n) == 0)
+   function maxValue(state, alpha, beta)
+else
+   function maxValue(state, alpha, beta)
+
+end
+
+function Utility(state)
+
+end
+
+function Initialize
+
+end
 
