@@ -1,1 +1,73 @@
 #Assignment2
+
+
+print("Enter number of items ")
+ print(" Enter weight number ")
+ print(" Enter values")
+ 
+ 
+ 
+function Initialize(double capacity, double coefficients, double weights, int n){
+capacityLeft = coefficients
+i=0
+
+for i in weights
+	
+coefficients[i] = randInt(0, capacityLeft/weights[i])
+capacityLeft = capacityLeft - weights[i]*coefficients[i]
+
+end
+}
+
+totalValue = (values')*coefficients
+
+
+
+function UpdateCoefficients(double capacityLeft, double coefficients, int n){
+	
+	
+	
+	double coeff2[] = coefficients
+	int k1 = randInt(0, n-1)
+	
+	capacityLeft = capacityLeft + coefficients[k1]*weights[k1]
+	
+	int k2 = randInt(0, n-1)
+	
+	if(k1 = k2){
+		
+		k2 = mod(n-1, k1+1)
+	}
+	
+	
+	coeff2[k1] = randInt(coeff2[k1]+1, floor(capacityLeft/weights[k1]))
+	capacityLeft = capacityLeft - coeff2[k1]*weights[k1]
+	
+	coeff2[k2] = randInt(0, floor(capacityLeft/weights[k2]))
+	capacityLeft = capacityLeft - coeff2[k2]*weights[k2]
+	
+		
+}
+
+
+function totalValue(double capacityLeft, double coefficients, double coeff, double weights int n){
+	
+	totalValue2 = totalValue
+	//next line updates totalvalue
+	totalValue2 = (totalValue2 - (coefficients[k1]*weights[k1] + coefficients[k2]*weights[k2])) + (coeff[k1]*weights[k1] - coeff[k2]*weights[k2])
+	
+	if (totalValue2 > totalValue){
+		
+		coefficients[k1] = coeff2[k1]
+		coefficients[k2] = coeff2[k2]
+		
+		capacityLeft = totalCapacity - (weights')*coefficients
+		
+	}
+	
+	else
+	
+    UpdateCoefficients(double capacityLeft, double coefficients, int n)
+	
+}
+
